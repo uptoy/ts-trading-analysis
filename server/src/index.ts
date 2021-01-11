@@ -25,6 +25,14 @@ const userRoutes = require('./routes/user')
     }
 })()
 
+app.use((req, res, next) => {
+  // allow calling from different domains
+  res.set("Access-Control-Allow-Origin", "*");
+  // allow authorization header
+  res.set("Access-Control-Allow-Headers", "authorization");
+  next();
+});
+
 
 app.use('/api',userRoutes)
 
